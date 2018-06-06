@@ -52,14 +52,17 @@ export class StepSliderComponent implements AfterViewInit {
 
     let target = this.steps.toArray()[i].nativeElement
     let wrapper = this.wrapper.nativeElement;
+
     
-    this.shouldAnimate = true;
-    
+    if( i != this.currentStep ) {
+      this.shouldAnimate = true;    
+    }
+
     if( !! this.scrollTimer ) {
       this.scrollTimer.unsubscribe()
     }
 
-    this.scrollTimer = timer(0,30).pipe(
+    this.scrollTimer = timer(30,70).pipe(
 
         takeWhile(() => this.shouldAnimate )).subscribe((e) => {
           
@@ -67,16 +70,26 @@ export class StepSliderComponent implements AfterViewInit {
 
           targetLeft = Math.max( target.offsetLeft - this.componentWidth / 2 + this.itemWidth / 2, 0 );
           targetLeft = Math.min( targetLeft, wrapper.scrollWidth - wrapper.offsetWidth );
+console.log(targetLeft, wrapper.scrollLeft);
 
-          if (wrapper.scrollLeft >= targetLeft ) {
+          if (wrapper.scrollLeft > targetLeft ) {
+
             this.scrollAmount = wrapper.scrollLeft - 10;
-          } else if (wrapper.scrollLeft <= targetLeft) {
+
+            console.log( "dec" )
+
+          } else if (wrapper.scrollLeft < targetLeft) {
+
             this.scrollAmount = wrapper.scrollLeft + 10;
+
+            console.log( "inc" )
+
           }
                   
         if (
           
-          
+          wrapper.scrollLeft == targetLeft
+          ||
           wrapper.scrollLeft + 10 > targetLeft && wrapper.scrollLeft - 10 < targetLeft
        
         ) {
