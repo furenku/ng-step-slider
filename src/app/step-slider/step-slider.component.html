@@ -1,0 +1,19 @@
+<div class="wrapper" #wrapper [scrollLeft]="scrollAmount">
+
+    <ul>
+
+        <li #item
+        (click)="centerStep(i)" 
+        *ngFor="let number of numbers; index as i;"
+        [ngClass]="{'active':currentStep==i}"
+        >
+            <span>
+                {{i+1}}
+            </span>
+        </li>
+        
+      
+      </ul>
+
+      
+</div>

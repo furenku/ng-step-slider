@@ -2,10 +2,12 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { StepSliderComponent } from './step-slider/step-slider.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    StepSliderComponent
   ],
   imports: [
     BrowserModule
