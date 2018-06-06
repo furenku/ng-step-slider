@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  selectedValue : number = -1;
+
+  selectValue( $event : number ) {
+    this.selectedValue = $event;
+  }
+
 }

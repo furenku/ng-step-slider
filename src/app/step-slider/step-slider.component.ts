@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ViewChildren, ElementRef, QueryList, HostListener } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ViewChildren, ElementRef, QueryList, HostListener, EventEmitter, Output } from '@angular/core';
 import { Subscription, timer } from "rxjs";
 import { takeWhile } from "rxjs/operators";
 
@@ -22,6 +22,8 @@ export class StepSliderComponent implements AfterViewInit {
 
   @ViewChild('wrapper') wrapper: ElementRef;
   @ViewChildren('item') steps: QueryList<ElementRef>;
+
+  @Output() selectStep: EventEmitter<number> = new EventEmitter();
 
   ngAfterViewInit() {
 
@@ -90,6 +92,8 @@ export class StepSliderComponent implements AfterViewInit {
           this.shouldAnimate = false;
 
           this.currentStep = i;
+
+          this.selectStep.emit( i )
 
         }
 

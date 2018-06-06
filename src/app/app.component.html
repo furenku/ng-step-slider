@@ -1,1 +1,6 @@
-<step-slider></step-slider>
+<p>
+    selected value
+    {{selectedValue}}
+</p>
+
+<step-slider (selectStep)="selectValue($event)"></step-slider>
