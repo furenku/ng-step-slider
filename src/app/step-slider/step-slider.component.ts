@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewChild, ViewChildren, ElementRef, QueryList, HostListener, EventEmitter, Output } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ViewChildren, ElementRef, QueryList, HostListener, EventEmitter, Input, Output } from '@angular/core';
 import { Subscription, timer } from "rxjs";
 import { takeWhile } from "rxjs/operators";
 
@@ -23,12 +23,12 @@ export class StepSliderComponent implements AfterViewInit {
   @ViewChild('wrapper') wrapper: ElementRef;
   @ViewChildren('item') steps: QueryList<ElementRef>;
 
-  @Output() selectStep: EventEmitter<number> = new EventEmitter();
+
+  @Input('step-number') stepNumber: number;
+  @Output('select-step') selectStep: EventEmitter<number> = new EventEmitter();
 
   ngAfterViewInit() {
-
     this.calculateValues() 
-    
   } 
   
   calculateValues() {
@@ -39,7 +39,8 @@ export class StepSliderComponent implements AfterViewInit {
   constructor() { }
 
   ngOnInit() {
-    this.numbers = Array(15).fill('').map((x,i)=>i);
+    
+    this.numbers = Array(this.stepNumber).fill('').map((x,i)=>i);
     this.itemWidth = 0;
     this.componentWidth = 0;
   }

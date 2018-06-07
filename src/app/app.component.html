@@ -1,6 +1,6 @@
-<p>
+<p *ngIf="!!selectedValue">
     selected value
     {{selectedValue}}
 </p>
 
-<step-slider (selectStep)="selectValue($event)"></step-slider>
+<step-slider (select-step)="selectValue($event)" [step-number]="16"></step-slider>
