@@ -58,8 +58,13 @@ export class StepSliderComponent implements AfterViewInit {
   } 
   
   calculateValues() {
+    
     this.componentWidth = this.wrapper.nativeElement.offsetWidth;
-    this.itemWidth = this.steps.toArray()[0].nativeElement.offsetWidth;
+    
+    if( !! this.steps && this.steps != undefined ) {
+      this.itemWidth = this.steps.toArray()[0].nativeElement.offsetWidth;
+    }
+
   }
   
   constructor() { }
